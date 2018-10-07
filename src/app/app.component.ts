@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Todo } from './todo/todo'
 import {TodoDataService} from "./todo-data.service";
 
@@ -9,22 +9,23 @@ import {TodoDataService} from "./todo-data.service";
   providers: [TodoDataService]
 })
 export class AppComponent {
-  title = 'todo';
-  newTodo: Todo = new Todo();
+  @Input()
+  public newTodo: Todo = new Todo();
+
   constructor(private todoDataService: TodoDataService) {
 
   }
-  addTodo() {
+  public addTodo() {
     this.todoDataService.addTodo(this.newTodo);
     this.newTodo = new Todo();
   }
-  removeTodo(todo: Todo) {
+  public removeTodo(todo: Todo) {
     this.todoDataService.deleteTodoById(todo.getId)
   }
-  toggleTodoComplete(todo: Todo) {
+  public toggleTodoComplete(todo: Todo) {
     this.todoDataService.toggleTodoComplete(todo);
   }
-  get Todos() {
+  public get Todos() {
     return this.todoDataService.getAllTodos();
   }
 }

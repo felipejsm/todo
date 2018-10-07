@@ -40,4 +40,8 @@ export class TodoDataService {
     });
     return updateTodo;
   }
+
+  getAllTodos(): Todo[] {
+    return this.todos;
+  }
 }
